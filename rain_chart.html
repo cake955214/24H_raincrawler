@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script src="Taiwan_map.js"></script>
+
+        <title>降雨量統計</title>
+
+        <div id="container"></div>
+
+        <style>
+            #container {
+                height: 800px;
+                min-width: 310px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            .loading {
+                margin-top: 10em;
+                text-align: center;
+                color: gray;
+            }
+
+        </style>
+
+        <script>
+            setTimeout(function(){
+                var data = [
+				// 以下為替代後端伺服器回應暫時填入數字
+					['tw-pt', 10], // 屏東縣
+                    ['tw-tn', 9], // 臺南市
+                    ['tw-il', 8], // 宜蘭縣
+                    ['tw-ch', 15], // 嘉義縣
+                    ['tw-tt', 12], // 臺東縣
+                    ['tw-ph', 17], // 澎湖縣
+                    ['tw-km', 20], // 金門縣
+                    ['tw-lk', 21], // 連江縣
+                    ['tw-tw', 12], // 臺北市
+                    ['tw-cs', 15], // 嘉義市
+                    ['tw-th', 12], // 臺中市
+                    ['tw-yl', 18], // 雲林縣
+                    ['tw-kh', 22], // 高雄市
+                    ['tw-tp', 25], // 新北市
+                    ['tw-hs', 27], // 新竹市
+                    ['tw-hh', 8], // 新竹縣
+                    ['tw-cl', 12], // 基隆市
+                    ['tw-ml', 15], // 苗栗縣
+                    ['tw-ty', 15], // 桃園市
+                    ['tw-cg', 21], // 彰化縣
+                    ['tw-hl', 7], // 花蓮縣
+                    ['tw-nt', 6]  // 南投縣
+					
+					
+				/* 以下註解為原定後端回應 但因後端伺服器已無運作
+                    ['tw-pt', rain_data_country[2].Rainfall24hr], // 屏東縣
+                    ['tw-tn', rain_data_country[9].Rainfall24hr], // 臺南市
+                    ['tw-il', rain_data_country[11].Rainfall24hr], // 宜蘭縣
+                    ['tw-ch', rain_data_country[15].Rainfall24hr], // 嘉義縣
+                    ['tw-tt', rain_data_country[4].Rainfall24hr], // 臺東縣
+                    ['tw-ph', rain_data_country[20].Rainfall24hr], // 澎湖縣
+                    ['tw-km', rain_data_country[19].Rainfall24hr], // 金門縣
+                    ['tw-lk', rain_data_country[18].Rainfall24hr], // 連江縣
+                    ['tw-tw', rain_data_country[3].Rainfall24hr], // 臺北市
+                    ['tw-cs', rain_data_country[16].Rainfall24hr], // 嘉義市
+                    ['tw-th', rain_data_country[12].Rainfall24hr], // 臺中市
+                    ['tw-yl', rain_data_country[7].Rainfall24hr], // 雲林縣
+                    ['tw-kh', rain_data_country[1].Rainfall24hr], // 高雄市
+                    ['tw-tp', rain_data_country[5].Rainfall24hr], // 新北市
+                    ['tw-hs', rain_data_country[21].Rainfall24hr], // 新竹市
+                    ['tw-hh', rain_data_country[10].Rainfall24hr], // 新竹縣
+                    ['tw-cl', rain_data_country[14].Rainfall24hr], // 基隆市
+                    ['tw-ml', rain_data_country[17].Rainfall24hr], // 苗栗縣
+                    ['tw-ty', rain_data_country[13].Rainfall24hr], // 桃園市
+                    ['tw-cg', rain_data_country[0].Rainfall24hr], // 彰化縣
+                    ['tw-hl', rain_data_country[6].Rainfall24hr], // 花蓮縣
+                    ['tw-nt', rain_data_country[8].Rainfall24hr]  // 南投縣
+                */
+				];
+
+                // Create the chart
+                Highcharts.mapChart('container', {
+                    chart: {
+                        map: 'countries/tw/tw-all'
+                    },
+
+                    title: {
+                        text: '降雨量統計'
+                    },
+
+                    subtitle: {
+                        text: '地圖資訊：<a href="https://data.gov.tw/dataset/7442">直轄市、縣市界線(TWD97經緯度)</a><br>降雨資訊：<a href="https://opendata.epa.gov.tw/Data/Contents/RainTenMin/">十分鐘與量資料</a>'
+                    },
+
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: {
+                            verticalAlign: 'bottom'
+                        }
+                    },
+
+                    colorAxis: {
+                        min: 0
+                    },
+
+                    series: [{
+                        data: data,
+                        name: '降雨量24h (mm)',
+                        states: {
+                            hover: {
+                                color: '#00FF00'
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }]
+                });
+            },1000);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
