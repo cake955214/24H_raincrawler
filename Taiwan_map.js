@@ -1,6 +1,7 @@
 var rain_data_country = {};
+/*
 $.ajax({
-    url: 'https://carlos-gardel.mylabs.space/1',
+    url: 'https://------------------',
     method: 'GET',
     success: function (data) {
         console.log(data);
@@ -10,7 +11,7 @@ $.ajax({
         console.log(error);
     }
 });
-
+*/
 setTimeout(function(){
     console.log(rain_data_country);
 },1000);
